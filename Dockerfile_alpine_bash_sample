@@ -1,0 +1,18 @@
+# FROM HERE
+# https://stackoverflow.com/questions/63602750/how-to-create-and-add-user-with-password-in-alpine-dockerfile
+
+FROM alpine:latest
+SHELL ["/bin/sh", "-c"]
+RUN apk add --no-cache bash
+ARG user=hakond
+ARG home=/home/$user
+RUN addgroup -S docker
+RUN adduser     --disabled-password     --gecos ""     --home $home     --ingroup docker     $user
+WORKDIR $home
+USER $user
+# COPY --chown=$user entrypoint.sh .
+# RUN chmod +x entrypoint.sh
+# ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/bin/sh"]
+# docker build -t alpine_bash -f ./Dockerfile_alpine_bash "." 
+# docker run -it --rm -name alpine_bash --net=host-e DISPLAY -v /home/trapapa/.Xauthority:/home/user/.Xauthority alpine_bash ""

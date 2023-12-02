@@ -1,0 +1,18 @@
+FROM alpine:latest
+
+RUN apk update && apk add  x11-apps
+RUN rm -rf /tmp/* /usr/share/doc/* /usr/share/info/* /var/tmp/*
+RUN useradd -ms /bin/bash user
+ENV DISPLAY :0
+ 
+USER user
+ENTRYPOINT ["/bin/sh", "-c", "/usr/bin/bash \"\"", "xeyes"]
+FROM alpine:latest
+
+RUN apk update && apk add  xeyes
+RUN rm -rf /tmp/* /usr/share/doc/* /usr/share/info/* /var/tmp/*
+RUN useradd -ms /bin/bash user
+ENV DISPLAY :0
+ 
+USER user
+ENTRYPOINT ["/bin/sh", "-c", "/usr/bin/bash \"\"", "xeyes"]
