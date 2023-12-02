@@ -1,0 +1,16 @@
+FROM alpine:latest
+
+RUN apk update && apk add  xeyes bash
+RUN rm -rf /tmp/* /usr/share/doc/* /usr/share/info/* /var/tmp/*
+# RUN useradd -ms /bin/bash user
+ARG user=user
+ARG home=/home/$user
+RUN addgroup -S docker
+RUN adduser     --disabled-password     --gecos ""     --home $home     --ingroup docker     $user
+WORKDIR $home
+USER $user
+# end
+ENV DISPLAY :0
+ 
+USER user
+ENTRYPOINT ["/bin/bash", "-c", "/usr/bin/bash \"\"", "xeyes"]

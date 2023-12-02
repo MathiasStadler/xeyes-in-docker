@@ -1,6 +1,11 @@
 {
     "cSpell.words": [
+        "addgroup",
+        "adduser",
+        "gecos",
         "setfacl",
+        "trapapa",
+        "WORKDIR",
         "Xauthority",
         "xeyes"
     ]
